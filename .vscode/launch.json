@@ -1,0 +1,174 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Helpothon",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor=helpothon",
+                "--dart-define=APP_ID=helpothon"
+            ],
+            "env": {
+                "APP_ID": "helpothon"
+            }
+        },
+        {
+            "name": "ScanMeee",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor=scanmeee",
+                "--dart-define=APP_ID=scanmeee"
+            ],
+            "env": {
+                "APP_ID": "scanmeee"
+            }
+        },
+        {
+            "name": "FormatWeaver",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor=formatweaver",
+                "--dart-define=APP_ID=formatweaver"
+            ],
+            "env": {
+                "APP_ID": "formatweaver"
+            }
+        },
+        {
+            "name": "SnapCompress",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor=snapcompress",
+                "--dart-define=APP_ID=snapcompress"
+            ],
+            "env": {
+                "APP_ID": "snapcompress"
+            }
+        },
+        {
+            "name": "PixelArtz",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor=pixelartz",
+                "--dart-define=APP_ID=pixelartz"
+            ],
+            "env": {
+                "APP_ID": "pixelartz"
+            }
+        },
+        {
+            "name": "AllRandomTools",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor=allrandomtools",
+                "--dart-define=APP_ID=allrandomtools"
+            ],
+            "env": {
+                "APP_ID": "allrandomtools"
+            }
+        },
+        {
+            "name": "CasualGameZone",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor=casualgamezone",
+                "--dart-define=APP_ID=casualgamezone"
+            ],
+            "env": {
+                "APP_ID": "casualgamezone"
+            }
+        },
+        {
+            "name": "CalculateDaily",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor=calculatedaily",
+                "--dart-define=APP_ID=calculatedaily"
+            ],
+            "env": {
+                "APP_ID": "calculatedaily"
+            }
+        },
+        {
+            "name": "PicxCraft",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor=picxcraft",
+                "--dart-define=APP_ID=picxcraft"
+            ],
+            "env": {
+                "APP_ID": "picxcraft"
+            }
+        },
+        {
+            "name": "AImagEasy",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor=aimageasy",
+                "--dart-define=APP_ID=aimageasy"
+            ],
+            "env": {
+                "APP_ID": "aimageasy"
+            }
+        },
+        {
+            "name": "PichaVerse",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor=pichaverse",
+                "--dart-define=APP_ID=pichaverse"
+            ],
+            "env": {
+                "APP_ID": "pichaverse"
+            }
+        },
+        {
+            "name": "PrettyParser",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor=prettyparser",
+                "--dart-define=APP_ID=prettyparser"
+            ],
+            "env": {
+                "APP_ID": "prettyparser"
+            }
+        },
+        {
+            "name": "MoodyBuddy",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor=moodybuddy",
+                "--dart-define=APP_ID=moodybuddy"
+            ],
+            "env": {
+                "APP_ID": "moodybuddy"
+            }
+        }
+    ]
+}
