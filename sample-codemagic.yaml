@@ -1,0 +1,148 @@
+workflows:
+  dev-workflow:
+    name: Assisto Dev Workflow
+    labels: 
+      - Dev
+      - Android
+    instance_type: mac_mini_m1
+    environment:
+      groups:
+        - "dev"
+      vars:
+        FIREBASE_APP_ID: 1:347795434098:android:560c3601c069ce305330eb
+      flutter: master
+      java: 17
+      android_signing:
+        - default-reference
+    
+    scripts:
+    - name: Echo environment variables
+      script: |
+        echo $GEO_API_KEY
+        echo $AD_MOBS_KEY
+        echo $GOOGLE_SIGN_IN
+        echo $SUPABASE_URL
+        echo $SUPABASE_KEY
+        echo $HTTP_URL
+        echo $ONE_SIGNAL_APP_ID
+    - name: Install dependencies
+      script: flutter pub get
+    - name: Decode Google credentials
+      script: |
+          echo $FIREBASE_SERVICE_ACCOUNT_CREDENTIALS 
+    - name: Build AAB with Flutter
+      script: | 
+        flutter build appbundle --flavor dev --release --build-number=$PROJECT_BUILD_NUMBER \
+          --dart-define=GEO_API_KEY=$GEO_API_KEY \
+          --dart-define=AD_MOBS_KEY=$AD_MOBS_KEY \
+          --dart-define=GOOGLE_SIGN_IN=$GOOGLE_SIGN_IN \
+          --dart-define=SUPABASE_URL=$SUPABASE_URL \
+          --dart-define=SUPABASE_KEY=$SUPABASE_KEY \
+          --dart-define=HTTP_URL=$HTTP_URL \
+          --dart-define=ONE_SIGNAL_APP_ID=$ONE_SIGNAL_APP_ID
+
+    - name: Build universal apk
+      script: | 
+        android-app-bundle build-universal-apk \
+          --bundle 'build/**/outputs/**/*.aab' \
+          --ks $CM_KEYSTORE_PATH \
+          --ks-pass $CM_KEYSTORE_PASSWORD \
+          --ks-key-alias $CM_KEY_ALIAS \
+          --key-pass $CM_KEY_PASSWORD
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - build/**/outputs/**/*.apk 
+      - flutter_drive.log
+    publishing:
+      # slack:
+      #   channel: '#cloud-build-notifications'
+      #   notify_on_build_start: false 
+      #   notify: 
+      #     success: false
+      #     failure: true
+      firebase:
+        # use this line to authenticate via service account
+        firebase_service_account: $FIREBASE_SERVICE_ACCOUNT_CREDENTIALS
+        android:
+          # Add your Android app id retrieved from Firebase console
+          app_id: $FIREBASE_APP_ID
+          # Add one or more groups that you wish to distribute your Android application to.
+          # You can create groups in the Firebase console
+          groups: 
+            - androidTesters
+          artifact_type: apk
+
+  prod-workflow:
+      name: Assisto Prod Workflow
+      labels: 
+        - Prod
+        - Android
+      instance_type: mac_mini_m1
+      environment:
+        groups:
+          - "prod"
+        vars:
+          FIREBASE_APP_ID: 1:955105553521:android:6914dd603b3a7dc95fbfd0
+          
+        flutter: master
+        java: 17
+        android_signing:
+          - default-reference
+      
+      scripts:
+      - name: Echo environment variables
+        script: |
+          echo $GEO_API_KEY
+          echo $GOOGLE_SIGN_IN
+          echo $SUPABASE_URL
+          echo $SUPABASE_KEY
+          echo $HTTP_URL
+          echo $ONE_SIGNAL_APP_ID
+      - name: Install dependencies
+        script: flutter pub get
+      - name: Decode Google credentials
+        script: |
+            echo $FIREBASE_SERVICE_ACCOUNT_CREDENTIALS 
+      - name: Build AAB with Flutter
+        script: | 
+          flutter build appbundle --flavor prod --release --build-number=$PROJECT_BUILD_NUMBER \
+            --dart-define=GEO_API_KEY=$GEO_API_KEY \
+            --dart-define=GOOGLE_SIGN_IN=$GOOGLE_SIGN_IN \
+            --dart-define=SUPABASE_URL=$SUPABASE_URL \
+            --dart-define=SUPABASE_KEY=$SUPABASE_KEY \
+            --dart-define=HTTP_URL=$HTTP_URL \
+            --dart-define=ONE_SIGNAL_APP_ID=$ONE_SIGNAL_APP_ID
+
+      - name: Build universal apk
+        script: | 
+          android-app-bundle build-universal-apk \
+            --bundle 'build/**/outputs/**/*.aab' \
+            --ks $CM_KEYSTORE_PATH \
+            --ks-pass $CM_KEYSTORE_PASSWORD \
+            --ks-key-alias $CM_KEY_ALIAS \
+            --key-pass $CM_KEY_PASSWORD \
+
+      artifacts:
+        - build/**/outputs/**/*.aab
+        - build/**/outputs/**/mapping.txt
+        - build/**/outputs/**/*.apk 
+        - flutter_drive.log
+      publishing:
+        # slack:
+        #   channel: '#cloud-build-notifications'
+        #   notify_on_build_start: false 
+        #   notify: 
+        #     success: false
+        #     failure: true
+        firebase:
+          # use this line to authenticate via service account
+          firebase_service_account: $FIREBASE_SERVICE_ACCOUNT_CREDENTIALS
+          android:
+            # Add your Android app id retrieved from Firebase console
+            app_id: $FIREBASE_APP_ID
+            # Add one or more groups that you wish to distribute your Android application to.
+            # You can create groups in the Firebase console
+            groups: 
+              - androidTesters
+            artifact_type: apk

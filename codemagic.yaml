@@ -1,0 +1,429 @@
+workflows:
+  helpothon-workflow:
+    name: Helpothon Build Workflow
+    labels: 
+      - Helpothon
+      - Android
+    instance_type: mac_mini_m1
+    environment:
+      flutter: 3.7.0
+      java: 17
+      android_signing:
+        - default-reference
+    
+    scripts:
+    - name: Install dependencies
+      script: flutter pub get
+    - name: Build AAB with Flutter
+      script: | 
+        flutter build appbundle --flavor helpothon --release --build-number=$PROJECT_BUILD_NUMBER \
+          --dart-define=APP_ID=helpothon
+    - name: Build universal APK
+      script: | 
+        android-app-bundle build-universal-apk \
+          --bundle 'build/**/outputs/**/*.aab' \
+          --ks $CM_KEYSTORE_PATH \
+          --ks-pass $CM_KEYSTORE_PASSWORD \
+          --ks-key-alias $CM_KEY_ALIAS \
+          --key-pass $CM_KEY_PASSWORD
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - build/**/outputs/**/*.apk 
+      - flutter_drive.log
+
+  scanmeee-workflow:
+    name: ScanMeee Build Workflow
+    labels: 
+      - ScanMeee
+      - Android
+    instance_type: mac_mini_m1
+    environment:
+      flutter: 3.7.0
+      java: 17
+      android_signing:
+        - default-reference
+    
+    scripts:
+    - name: Install dependencies
+      script: flutter pub get
+    - name: Build AAB with Flutter
+      script: | 
+        flutter build appbundle --flavor scanmeee --release --build-number=$PROJECT_BUILD_NUMBER \
+          --dart-define=APP_ID=scanmeee
+    - name: Build universal APK
+      script: | 
+        android-app-bundle build-universal-apk \
+          --bundle 'build/**/outputs/**/*.aab' \
+          --ks $CM_KEYSTORE_PATH \
+          --ks-pass $CM_KEYSTORE_PASSWORD \
+          --ks-key-alias $CM_KEY_ALIAS \
+          --key-pass $CM_KEY_PASSWORD
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - build/**/outputs/**/*.apk 
+      - flutter_drive.log
+
+  formatweaver-workflow:
+    name: FormatWeaver Build Workflow
+    labels: 
+      - FormatWeaver
+      - Android
+    instance_type: mac_mini_m1
+    environment:
+      flutter: 3.7.0
+      java: 17
+      android_signing:
+        - default-reference
+    
+    scripts:
+    - name: Install dependencies
+      script: flutter pub get
+    - name: Build AAB with Flutter
+      script: | 
+        flutter build appbundle --flavor formatweaver --release --build-number=$PROJECT_BUILD_NUMBER \
+          --dart-define=APP_ID=formatweaver
+    - name: Build universal APK
+      script: | 
+        android-app-bundle build-universal-apk \
+          --bundle 'build/**/outputs/**/*.aab' \
+          --ks $CM_KEYSTORE_PATH \
+          --ks-pass $CM_KEYSTORE_PASSWORD \
+          --ks-key-alias $CM_KEY_ALIAS \
+          --key-pass $CM_KEY_PASSWORD
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - build/**/outputs/**/*.apk 
+      - flutter_drive.log
+
+  snapcompress-workflow:
+    name: SnapCompress Build Workflow
+    labels: 
+      - SnapCompress
+      - Android
+    instance_type: mac_mini_m1
+    environment:
+      flutter: 3.7.0
+      java: 17
+      android_signing:
+        - default-reference
+    
+    scripts:
+    - name: Install dependencies
+      script: flutter pub get
+    - name: Build AAB with Flutter
+      script: | 
+        flutter build appbundle --flavor snapcompress --release --build-number=$PROJECT_BUILD_NUMBER \
+          --dart-define=APP_ID=snapcompress
+    - name: Build universal APK
+      script: | 
+        android-app-bundle build-universal-apk \
+          --bundle 'build/**/outputs/**/*.aab' \
+          --ks $CM_KEYSTORE_PATH \
+          --ks-pass $CM_KEYSTORE_PASSWORD \
+          --ks-key-alias $CM_KEY_ALIAS \
+          --key-pass $CM_KEY_PASSWORD
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - build/**/outputs/**/*.apk 
+      - flutter_drive.log
+
+  pixelartz-workflow:
+    name: PixelArtz Build Workflow
+    labels: 
+      - PixelArtz
+      - Android
+    instance_type: mac_mini_m1
+    environment:
+      flutter: 3.7.0
+      java: 17
+      android_signing:
+        - default-reference
+    
+    scripts:
+    - name: Install dependencies
+      script: flutter pub get
+    - name: Build AAB with Flutter
+      script: | 
+        flutter build appbundle --flavor pixelartz --release --build-number=$PROJECT_BUILD_NUMBER \
+          --dart-define=APP_ID=pixelartz
+    - name: Build universal APK
+      script: | 
+        android-app-bundle build-universal-apk \
+          --bundle 'build/**/outputs/**/*.aab' \
+          --ks $CM_KEYSTORE_PATH \
+          --ks-pass $CM_KEYSTORE_PASSWORD \
+          --ks-key-alias $CM_KEY_ALIAS \
+          --key-pass $CM_KEY_PASSWORD
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - build/**/outputs/**/*.apk 
+      - flutter_drive.log
+
+  allrandomtools-workflow:
+    name: AllRandomTools Build Workflow
+    labels: 
+      - AllRandomTools
+      - Android
+    instance_type: mac_mini_m1
+    environment:
+      flutter: 3.7.0
+      java: 17
+      android_signing:
+        - default-reference
+    
+    scripts:
+    - name: Install dependencies
+      script: flutter pub get
+    - name: Build AAB with Flutter
+      script: | 
+        flutter build appbundle --flavor allrandomtools --release --build-number=$PROJECT_BUILD_NUMBER \
+          --dart-define=APP_ID=allrandomtools
+    - name: Build universal APK
+      script: | 
+        android-app-bundle build-universal-apk \
+          --bundle 'build/**/outputs/**/*.aab' \
+          --ks $CM_KEYSTORE_PATH \
+          --ks-pass $CM_KEYSTORE_PASSWORD \
+          --ks-key-alias $CM_KEY_ALIAS \
+          --key-pass $CM_KEY_PASSWORD
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - build/**/outputs/**/*.apk 
+      - flutter_drive.log
+
+  casualgamezone-workflow:
+    name: CasualGameZone Build Workflow
+    labels: 
+      - CasualGameZone
+      - Android
+    instance_type: mac_mini_m1
+    environment:
+      flutter: 3.7.0
+      java: 17
+      android_signing:
+        - default-reference
+    
+    scripts:
+    - name: Install dependencies
+      script: flutter pub get
+    - name: Build AAB with Flutter
+      script: | 
+        flutter build appbundle --flavor casualgamezone --release --build-number=$PROJECT_BUILD_NUMBER \
+          --dart-define=APP_ID=casualgamezone
+    - name: Build universal APK
+      script: | 
+        android-app-bundle build-universal-apk \
+          --bundle 'build/**/outputs/**/*.aab' \
+          --ks $CM_KEYSTORE_PATH \
+          --ks-pass $CM_KEYSTORE_PASSWORD \
+          --ks-key-alias $CM_KEY_ALIAS \
+          --key-pass $CM_KEY_PASSWORD
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - build/**/outputs/**/*.apk 
+      - flutter_drive.log
+
+  calculatedaily-workflow:
+    name: CalculateDaily Build Workflow
+    labels: 
+      - CalculateDaily
+      - Android
+    instance_type: mac_mini_m1
+    environment:
+      flutter: 3.7.0
+      java: 17
+      android_signing:
+        - default-reference
+    
+    scripts:
+    - name: Install dependencies
+      script: flutter pub get
+    - name: Build AAB with Flutter
+      script: | 
+        flutter build appbundle --flavor calculatedaily --release --build-number=$PROJECT_BUILD_NUMBER \
+          --dart-define=APP_ID=calculatedaily
+    - name: Build universal APK
+      script: | 
+        android-app-bundle build-universal-apk \
+          --bundle 'build/**/outputs/**/*.aab' \
+          --ks $CM_KEYSTORE_PATH \
+          --ks-pass $CM_KEYSTORE_PASSWORD \
+          --ks-key-alias $CM_KEY_ALIAS \
+          --key-pass $CM_KEY_PASSWORD
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - build/**/outputs/**/*.apk 
+      - flutter_drive.log
+
+  picxcraft-workflow:
+    name: PicxCraft Build Workflow
+    labels: 
+      - PicxCraft
+      - Android
+    instance_type: mac_mini_m1
+    environment:
+      flutter: 3.7.0
+      java: 17
+      android_signing:
+        - default-reference
+    
+    scripts:
+    - name: Install dependencies
+      script: flutter pub get
+    - name: Build AAB with Flutter
+      script: | 
+        flutter build appbundle --flavor picxcraft --release --build-number=$PROJECT_BUILD_NUMBER \
+          --dart-define=APP_ID=picxcraft
+    - name: Build universal APK
+      script: | 
+        android-app-bundle build-universal-apk \
+          --bundle 'build/**/outputs/**/*.aab' \
+          --ks $CM_KEYSTORE_PATH \
+          --ks-pass $CM_KEYSTORE_PASSWORD \
+          --ks-key-alias $CM_KEY_ALIAS \
+          --key-pass $CM_KEY_PASSWORD
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - build/**/outputs/**/*.apk 
+      - flutter_drive.log
+
+  aimageasy-workflow:
+    name: AImagEasy Build Workflow
+    labels: 
+      - AImagEasy
+      - Android
+    instance_type: mac_mini_m1
+    environment:
+      flutter: 3.7.0
+      java: 17
+      android_signing:
+        - default-reference
+    
+    scripts:
+    - name: Install dependencies
+      script: flutter pub get
+    - name: Build AAB with Flutter
+      script: | 
+        flutter build appbundle --flavor aimageasy --release --build-number=$PROJECT_BUILD_NUMBER \
+          --dart-define=APP_ID=aimageasy
+    - name: Build universal APK
+      script: | 
+        android-app-bundle build-universal-apk \
+          --bundle 'build/**/outputs/**/*.aab' \
+          --ks $CM_KEYSTORE_PATH \
+          --ks-pass $CM_KEYSTORE_PASSWORD \
+          --ks-key-alias $CM_KEY_ALIAS \
+          --key-pass $CM_KEY_PASSWORD
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - build/**/outputs/**/*.apk 
+      - flutter_drive.log
+
+  pichaverse-workflow:
+    name: PichaVerse Build Workflow
+    labels: 
+      - PichaVerse
+      - Android
+    instance_type: mac_mini_m1
+    environment:
+      flutter: 3.7.0
+      java: 17
+      android_signing:
+        - default-reference
+    
+    scripts:
+    - name: Install dependencies
+      script: flutter pub get
+    - name: Build AAB with Flutter
+      script: | 
+        flutter build appbundle --flavor pichaverse --release --build-number=$PROJECT_BUILD_NUMBER \
+          --dart-define=APP_ID=pichaverse
+    - name: Build universal APK
+      script: | 
+        android-app-bundle build-universal-apk \
+          --bundle 'build/**/outputs/**/*.aab' \
+          --ks $CM_KEYSTORE_PATH \
+          --ks-pass $CM_KEYSTORE_PASSWORD \
+          --ks-key-alias $CM_KEY_ALIAS \
+          --key-pass $CM_KEY_PASSWORD
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - build/**/outputs/**/*.apk 
+      - flutter_drive.log
+
+  prettyparser-workflow:
+    name: PrettyParser Build Workflow
+    labels: 
+      - PrettyParser
+      - Android
+    instance_type: mac_mini_m1
+    environment:
+      flutter: 3.7.0
+      java: 17
+      android_signing:
+        - default-reference
+    
+    scripts:
+    - name: Install dependencies
+      script: flutter pub get
+    - name: Build AAB with Flutter
+      script: | 
+        flutter build appbundle --flavor prettyparser --release --build-number=$PROJECT_BUILD_NUMBER \
+          --dart-define=APP_ID=prettyparser
+    - name: Build universal APK
+      script: | 
+        android-app-bundle build-universal-apk \
+          --bundle 'build/**/outputs/**/*.aab' \
+          --ks $CM_KEYSTORE_PATH \
+          --ks-pass $CM_KEYSTORE_PASSWORD \
+          --ks-key-alias $CM_KEY_ALIAS \
+          --key-pass $CM_KEY_PASSWORD
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - build/**/outputs/**/*.apk 
+      - flutter_drive.log
+
+  moodybuddy-workflow:
+    name: MoodyBuddy Build Workflow
+    labels: 
+      - MoodyBuddy
+      - Android
+    instance_type: mac_mini_m1
+    environment:
+      flutter: 3.7.0
+      java: 17
+      android_signing:
+        - default-reference
+    
+    scripts:
+    - name: Install dependencies
+      script: flutter pub get
+    - name: Build AAB with Flutter
+      script: | 
+        flutter build appbundle --flavor moodybuddy --release --build-number=$PROJECT_BUILD_NUMBER \
+          --dart-define=APP_ID=moodybuddy
+    - name: Build universal APK
+      script: | 
+        android-app-bundle build-universal-apk \
+          --bundle 'build/**/outputs/**/*.aab' \
+          --ks $CM_KEYSTORE_PATH \
+          --ks-pass $CM_KEYSTORE_PASSWORD \
+          --ks-key-alias $CM_KEY_ALIAS \
+          --key-pass $CM_KEY_PASSWORD
+    artifacts:
+      - build/**/outputs/**/*.aab
+      - build/**/outputs/**/mapping.txt
+      - build/**/outputs/**/*.apk 
+      - flutter_drive.log
